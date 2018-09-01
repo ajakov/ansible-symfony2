@@ -20,6 +20,10 @@
   file: state=link src={{symfony_project_composer_path}} path={{symfony_current_release_dir}}/composer
   when: symfony_project_manage_composer == True
 
+- name: Copy over kernel backup
+  action: shell cp -f {{symfony_project_root}}/current/misc/AppKernel.php {{symfony_project_root}}/current/app/AppKernel.php
+  when: symfony_project_copy_kernel_backup == True
+
 - name: Run composer install.
   shell: cd {{symfony_current_release_dir}} && export SYMFONY_ENV={{symfony_project_env}}; {{symfony_project_php_path}} {{symfony_project_php_options}} {{symfony_project_composer_path}} install {{symfony_project_composer_opts}}
   when: symfony_project_composer_run_install == True
