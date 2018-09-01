@@ -21,7 +21,7 @@
   when: symfony_project_manage_composer == True
 
 - name: Copy over kernel backup
-  action: shell cp -f {{symfony_project_root}}/releases/{{symfony_project_release}}/misc/AppKernel.php {{symfony_project_root}}/releases/{{symfony_project_release}}/app/AppKernel.php
+  action: shell cp -f {{symfony_current_release_dir}}/misc/AppKernel.php {{symfony_current_release_dir}}/app/AppKernel.php
   when: symfony_project_copy_kernel_backup == True
 
 - name: Run composer install.
